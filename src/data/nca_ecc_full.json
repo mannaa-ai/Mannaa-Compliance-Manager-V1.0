@@ -1,0 +1,47 @@
+{
+  "id": "nca-ecc-1-2018",
+  "code": "NCA_ECC",
+  "name": "NCA ECC-1:2018 (Essential Cybersecurity Controls)",
+  "version": "1:2018 (Complete Official Controls)",
+  "category": "Cybersecurity",
+  "jurisdiction": "Saudi Arabia",
+  "description": "Official Mandatory Essential Cybersecurity Controls issued by NCA covering all Governance, Defense, Resilience, Third-Party, and ICS sub-controls.",
+  "domains": [
+    {
+      "id": "ECC-1",
+      "code": "1",
+      "name": "1. Cybersecurity Governance",
+      "sheet": "Governance",
+      "weight": 25
+    },
+    {
+      "id": "ECC-2",
+      "code": "2",
+      "name": "2. Cybersecurity Defense",
+      "sheet": "Defense",
+      "weight": 35
+    },
+    {
+      "id": "ECC-3",
+      "code": "3",
+      "name": "3. Cybersecurity Resilience",
+      "sheet": "Resilience",
+      "weight": 20
+    },
+    {
+      "id": "ECC-4",
+      "code": "4",
+      "name": "4. Third-Party and Cloud Cybersecurity",
+      "sheet": "Third-Party & Cloud",
+      "weight": 15
+    },
+    {
+      "id": "ECC-5",
+      "code": "5",
+      "name": "5. Industrial Control Systems (ICS)",
+      "sheet": "ICS",
+      "weight": 5
+    }
+  ],
+  "controls": []
+}
