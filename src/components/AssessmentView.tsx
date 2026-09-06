@@ -17,7 +17,10 @@ import {
   Award,
   Download,
   Upload,
-  CheckCheck
+  CheckCheck,
+  FileCheck,
+  FileText,
+  Sparkles
 } from 'lucide-react';
 
 interface AssessmentViewProps {
@@ -429,6 +432,42 @@ export const AssessmentView: React.FC<AssessmentViewProps> = ({
                   <p className={`text-xs whitespace-pre-line leading-relaxed ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
                     {activeControl.implementationGuidance}
                   </p>
+                </div>
+              )}
+
+              {/* Dedicated Recommended & Required Evidence Box */}
+              {activeControl.requiredEvidence && activeControl.requiredEvidence.length > 0 && (
+                <div className={`mt-4 pt-3.5 border-t ${
+                  theme === 'dark' ? 'border-slate-800/80' : 'border-slate-200'
+                }`}>
+                  <div className="flex items-center gap-2 mb-2.5">
+                    <div className="w-5 h-5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500">
+                      <FileCheck className="w-3 h-3" />
+                    </div>
+                    <h4 className="text-xs font-black text-emerald-500 uppercase tracking-wider">
+                      {t.recommendedEvidence}
+                    </h4>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 gap-2">
+                    {activeControl.requiredEvidence.map((evItem, idx) => (
+                      <div 
+                        key={idx}
+                        className={`p-2.5 rounded-xl border flex items-start gap-2.5 transition ${
+                          theme === 'dark' 
+                            ? 'bg-slate-900/70 border-slate-800/90 text-slate-200 hover:border-emerald-500/40' 
+                            : 'bg-emerald-50/60 border-emerald-200/70 text-slate-800 hover:border-emerald-400'
+                        }`}
+                      >
+                        <div className="w-4 h-4 rounded-md bg-emerald-500/20 text-emerald-500 flex items-center justify-center shrink-0 mt-0.5 text-[10px] font-black">
+                          {idx + 1}
+                        </div>
+                        <span className="text-xs font-semibold leading-relaxed">
+                          {evItem}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>

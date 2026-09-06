@@ -124,7 +124,8 @@ export function exportClientQuestionnaireExcel(
       'Sub-Clause': ctrl.subDomain || '',
       'Title': ctrl.title,
       'Requirement / Standard Clause': ctrl.description,
-      'Implementation Guidance & Expected Evidence': ctrl.implementationGuidance || '',
+      'Implementation Guidance & Objectives': ctrl.implementationGuidance || '',
+      'Recommended & Required Evidence Documents': (ctrl.requiredEvidence || []).join('\n• '),
       'Client Compliance Status (Compliant / Partially Compliant / Non-Compliant / Not Applicable)': 
         record?.status === 'COMPLIANT' ? 'Compliant' :
         record?.status === 'PARTIALLY_COMPLIANT' ? 'Partially Compliant' :
@@ -152,11 +153,12 @@ export function exportClientQuestionnaireExcel(
     { wch: 35 },  // Title
     { wch: 55 },  // Requirement
     { wch: 45 },  // Guidance
+    { wch: 50 },  // Recommended Evidence Documents
     { wch: 30 },  // Status
     { wch: 15 },  // CMMI
     { wch: 15 },  // Score %
     { wch: 45 },  // Client Response
-    { wch: 35 },  // Evidence
+    { wch: 35 },  // Evidence Links
     { wch: 40 },  // Remediation
     { wch: 18 },  // Priority
     { wch: 25 },  // Assignee

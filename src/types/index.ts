@@ -1,4 +1,4 @@
-﻿export type FrameworkType = 'NCA_ECC' | 'NCA_CSCC' | 'SAMA_CSF' | 'ISO_27001' | 'ISO_20000' | 'ISO_22301' | 'NIST_CSF' | 'ISO_42001' | 'CUSTOM';
+export type FrameworkType = 'NCA_ECC' | 'NCA_CSCC' | 'SAMA_CSF' | 'ISO_27001' | 'ISO_20000' | 'ISO_22301' | 'NIST_CSF' | 'ISO_42001' | 'CUSTOM';
 
 export type ComplianceStatus = 'COMPLIANT' | 'PARTIALLY_COMPLIANT' | 'NON_COMPLIANT' | 'NOT_APPLICABLE' | 'NOT_ASSESSED';
 
@@ -16,6 +16,7 @@ export interface ControlItem {
   description: string;
   objective?: string;
   implementationGuidance?: string;
+  requiredEvidence?: string[];
   weight?: number;
   mappedControls?: string[];
 }

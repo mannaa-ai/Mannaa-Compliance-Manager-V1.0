@@ -1,4 +1,4 @@
-﻿export type Language = 'en' | 'ar';
+export type Language = 'en' | 'ar';
 
 export interface Translations {
   appName: string;
@@ -52,6 +52,7 @@ export interface Translations {
   controlsChecklist: string;
   requirementClause: string;
   implementationGuidance: string;
+  recommendedEvidence: string;
   crossReferences: string;
   tieredStatus: string;
   cmmiMaturity: string;
@@ -153,6 +154,7 @@ export const translations: Record<Language, Translations> = {
     controlsChecklist: 'Controls Checklist',
     requirementClause: 'Requirement / Standard Clause',
     implementationGuidance: 'Implementation Guidance & Objectives',
+    recommendedEvidence: 'Recommended & Required Evidence Documents',
     crossReferences: 'Cross Framework References',
     tieredStatus: '1. Tiered Status',
     cmmiMaturity: '2. CMMI Maturity (0-5)',
@@ -248,6 +250,7 @@ export const translations: Record<Language, Translations> = {
     controlsChecklist: 'قائمة الضوابط والمتطلبات',
     requirementClause: 'نص المتطلب / الضابط الرقابي',
     implementationGuidance: 'إرشادات التطبيق ومتطلبات الأدلة الإلزامية',
+    recommendedEvidence: 'الأدلة والوثائق الإلزامية والموصى بها للتدقيق',
     crossReferences: 'المواءمة المرجعية مع المعايير الأخرى',
     tieredStatus: '١. مستوى الالتزام المرحلي',
     cmmiMaturity: '٢. مستوى النضج CMMI (0-5)',
