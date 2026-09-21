@@ -18,9 +18,7 @@ import {
   Download,
   Upload,
   CheckCheck,
-  FileCheck,
-  FileText,
-  Sparkles
+  FileCheck
 } from 'lucide-react';
 
 interface AssessmentViewProps {

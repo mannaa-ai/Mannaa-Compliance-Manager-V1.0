@@ -1,6 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import type { Framework } from '../types';
-import { Layers, ArrowRightLeft, Search, ShieldCheck } from 'lucide-react';
+import { ArrowRightLeft, Search } from 'lucide-react';
 
 interface CrossMappingProps {
   frameworks: Framework[];

@@ -166,10 +166,11 @@ export function exportClientQuestionnaireExcel(
   ];
 
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, `${framework.name.substring(0, 25)} Questionnaire`);
+  const sheetTitle = `${clientName ? clientName.substring(0, 10) + ' - ' : ''}${framework.name.substring(0, 18)}`;
+  XLSX.utils.book_append_sheet(wb, ws, sheetTitle.substring(0, 31));
   
   // Clean filename
-  const cleanName = framework.name.replace(/[^a-zA-Z0-9_\-]/g, '_');
+  const cleanName = framework.name.replace(/[^a-zA-Z0-9_-]/g, '_');
   XLSX.writeFile(wb, `${cleanName}_Client_Questionnaire.xlsx`);
 }
 
@@ -191,7 +192,7 @@ export function parseAnsweredQuestionnaire(
 
   const records: AssessmentRecord[] = [];
 
-  rows.forEach((row, idx) => {
+  rows.forEach((row) => {
     const controlId = String(row['Control ID'] || row['ID'] || row['ControlId'] || '').trim();
     if (!controlId) return;
 

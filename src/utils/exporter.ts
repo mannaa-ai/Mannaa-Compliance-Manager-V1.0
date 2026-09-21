@@ -1,4 +1,4 @@
-﻿import jsPDF from 'jspdf';
+import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import type { Project, Framework, AssessmentRecord } from '../types';
@@ -135,7 +135,7 @@ export function exportExecutivePDF(
     head: [['Control ID', 'Title', 'Status', 'Priority', 'Deficiency / Finding', 'Remediation Plan', 'Due']],
     body: findingRows.length > 0 ? findingRows : [['-', 'No critical gaps identified', 'COMPLIANT', 'LOW', 'All assessed controls met benchmark requirements.', '-', '-']],
     theme: 'striped',
-    headStyles: { fillColor: [220, 38, 38], textColor: 255, fontStyle: 'bold' },
+    headStyles: { fillColor: [dangerColor[0], dangerColor[1], dangerColor[2]], textColor: 255, fontStyle: 'bold' },
     styles: { fontSize: 8, cellPadding: 2 }
   });
 

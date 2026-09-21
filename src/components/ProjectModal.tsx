@@ -1,6 +1,6 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import type { Project, Framework } from '../types';
-import { Building2, Plus, Check } from 'lucide-react';
+import { Building2, Check } from 'lucide-react';
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -97,6 +97,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               placeholder="e.g. Mohamed Ali (Senior GRC Consultant)"
               value={leadAuditor}
               onChange={(e) => setLeadAuditor(e.target.value)}
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 mb-1">Project Scope & Notes</label>
+            <textarea
+              rows={2}
+              placeholder="Audit scope, objectives, or assessment notes..."
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-200 focus:outline-none focus:border-blue-500"
             />
           </div>

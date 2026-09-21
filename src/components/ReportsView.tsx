@@ -1,14 +1,10 @@
-﻿import React from 'react';
+import React from 'react';
 import type { Project, Framework, AssessmentRecord, EvidenceItem } from '../types';
 import { 
   FileText, 
   FileSpreadsheet, 
   Download, 
-  ShieldCheck, 
-  CheckCircle2, 
-  AlertTriangle,
-  Award,
-  Sparkles
+  ShieldCheck
 } from 'lucide-react';
 import { exportExecutivePDF, exportDetailedExcel, exportStatementOfApplicability } from '../utils/exporter';
 import { calculateFrameworkScores } from '../utils/scoring';

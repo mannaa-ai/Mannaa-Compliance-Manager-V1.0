@@ -6,5 +6,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: './', // Essential for Electron / desktop relative asset paths
+  server: {
+    host: true, // Listen on all local IP addresses (0.0.0.0)
+    port: 5173
+  }
 })
 

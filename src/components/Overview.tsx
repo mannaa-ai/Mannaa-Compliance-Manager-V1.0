@@ -1,4 +1,4 @@
-﻿import React, { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import type { Framework, AssessmentRecord, Project } from '../types';
 import type { Language } from '../utils/i18n';
 import { translations } from '../utils/i18n';
@@ -48,7 +48,12 @@ export const Overview: React.FC<OverviewProps> = ({
   const t = translations[lang];
   const isRtl = lang === 'ar';
 
-  if (!framework || !project) {
+  const summary = useMemo(() => {
+    if (!framework) return null;
+    return calculateFrameworkScores(framework, assessments);
+  }, [framework, assessments]);
+
+  if (!framework || !project || !summary) {
     return (
       <div className="p-8 flex flex-col items-center justify-center min-h-[60vh] text-center">
         <Layers className="w-12 h-12 text-slate-400 mb-3" />
@@ -59,10 +64,6 @@ export const Overview: React.FC<OverviewProps> = ({
       </div>
     );
   }
-
-  const summary = useMemo(() => {
-    return calculateFrameworkScores(framework, assessments);
-  }, [framework, assessments]);
 
   const radarData = summary.domainBreakdown.map(d => ({
     domain: d.domainName.length > 22 ? d.domainName.substring(0, 20) + '...' : d.domainName,

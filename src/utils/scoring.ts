@@ -1,4 +1,4 @@
-﻿import type { AssessmentRecord, Framework, ComplianceStatus, CMMILevel } from '../types';
+import type { AssessmentRecord, Framework } from '../types';
 
 export interface DomainScore {
   domainId: string;
