@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 interface StandardLogoProps {
   code: string;
@@ -23,6 +23,15 @@ export const StandardLogoBadge: React.FC<StandardLogoProps> = ({ code, className
       <div className={`${sizeClasses} rounded-xl bg-gradient-to-br from-amber-600 to-yellow-700 text-white font-black flex flex-col items-center justify-center shadow-md border border-amber-400/40 select-none ${className}`}>
         <span className="leading-none tracking-tighter">SAMA</span>
         {size !== 'sm' && <span className="text-[7px] font-bold uppercase tracking-widest text-amber-200">CENTRAL</span>}
+      </div>
+    );
+  }
+
+  if (code === 'SAUDI_PDPL') {
+    return (
+      <div className={`${sizeClasses} rounded-xl bg-gradient-to-br from-teal-600 to-emerald-800 text-white font-black flex flex-col items-center justify-center shadow-md border border-teal-400/40 select-none ${className}`}>
+        <span className="leading-none tracking-tighter">PDPL</span>
+        {size !== 'sm' && <span className="text-[7px] font-bold uppercase tracking-widest text-teal-200">SDAIA</span>}
       </div>
     );
   }

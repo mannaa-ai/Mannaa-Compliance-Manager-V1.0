@@ -8436,6 +8436,439 @@
     ]
   },
   {
+    "id": "saudi-pdpl",
+    "code": "SAUDI_PDPL",
+    "name": "Saudi PDPL",
+    "version": "SDAIA Official 2023/2024",
+    "category": "Data Privacy & Governance",
+    "jurisdiction": "Saudi Arabia",
+    "description": "Official Saudi Personal Data Protection Law (نظام حماية البيانات الشخصية) issued by SDAIA and NDMO covering Consent, Data Subject Rights, Controller Obligations, 72-Hour Breach Reporting, RoPA, and Cross-Border Transfers.",
+    "domains": [
+      {
+        "id": "PDPL-DOM-1",
+        "code": "1",
+        "name": "1. General Principles & Lawful Bases of Processing",
+        "weight": 20
+      },
+      {
+        "id": "PDPL-DOM-2",
+        "code": "2",
+        "name": "2. Data Subject Rights & Consent Management",
+        "weight": 25
+      },
+      {
+        "id": "PDPL-DOM-3",
+        "code": "3",
+        "name": "3. Controller & Processor Governance & DPIA",
+        "weight": 20
+      },
+      {
+        "id": "PDPL-DOM-4",
+        "code": "4",
+        "name": "4. Security Safeguards & 72-Hour Breach Notification",
+        "weight": 15
+      },
+      {
+        "id": "PDPL-DOM-5",
+        "code": "5",
+        "name": "5. Cross-Border Personal Data Transfer",
+        "weight": 10
+      },
+      {
+        "id": "PDPL-DOM-6",
+        "code": "6",
+        "name": "6. Direct Marketing, Special Categories & RoPA Records",
+        "weight": 10
+      }
+    ],
+    "controls": [
+      {
+        "id": "PDPL-ART-01",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-1",
+        "domainName": "1. General Principles & Lawful Bases of Processing",
+        "subDomain": "Scope and Definitions",
+        "title": "PDPL-ART-01: Scope of Application and Regulatory Definitions",
+        "description": "The organization must understand and identify all personal data processing activities within the Kingdom or concerning individuals residing in Saudi Arabia, ensuring clear terminology for Controllers, Processors, and Data Subjects.",
+        "implementationGuidance": "Establish a comprehensive Personal Data Classification and Registry standard aligning with SDAIA regulatory definitions.",
+        "requiredEvidence": [
+          "Approved Personal Data Protection Charter & Governance Framework",
+          "Data Processing Boundary & Organizational Scope Document",
+          "Identified List of Controllers, Processors, and Sub-processors"
+        ],
+        "weight": 8
+      },
+      {
+        "id": "PDPL-ART-02",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-1",
+        "domainName": "1. General Principles & Lawful Bases of Processing",
+        "subDomain": "Territorial Scope",
+        "title": "PDPL-ART-02: Territorial & Extraterritorial Jurisdiction",
+        "description": "Ensure personal data processing complies with PDPL whether processed manually, electronically, or through outsourced vendors located inside or outside the Kingdom.",
+        "implementationGuidance": "Map all physical and electronic data flows across all branches, subsidiaries, and third-party hosting partners.",
+        "requiredEvidence": [
+          "Cross-Entity Data Flow Architecture Map",
+          "Data Localization Assessment Document",
+          "Third-Party Cloud Hosting Jurisdiction Inventory"
+        ],
+        "weight": 8
+      },
+      {
+        "id": "PDPL-ART-05",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-1",
+        "domainName": "1. General Principles & Lawful Bases of Processing",
+        "subDomain": "Consent and Lawful Basis",
+        "title": "PDPL-ART-05: Valid Consent and Lawful Bases of Processing",
+        "description": "Personal Data may not be processed without obtaining the explicit consent of the Data Subject, unless an explicit statutory exemption under Article 6 applies.",
+        "implementationGuidance": "Implement consent collection mechanisms across all digital platforms (web portals, mobile apps) with clear, unbundled opt-in checkboxes.",
+        "requiredEvidence": [
+          "Consent Collection Policy & Procedure Document",
+          "Digital Consent Timestamp Logs and Audit Records",
+          "Consent Withdrawal & Opt-Out Mechanism Screenshots"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-06",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-1",
+        "domainName": "1. General Principles & Lawful Bases of Processing",
+        "subDomain": "Consent Exemptions",
+        "title": "PDPL-ART-06: Legal Bases Exempt from Consent",
+        "description": "Document and substantiate processing justified without explicit consent: public interest, statutory legal obligations, vital interests of the subject, performance of an agreement, or legitimate interests.",
+        "implementationGuidance": "Document the precise legal basis for each processing purpose in the Record of Processing Activities (RoPA).",
+        "requiredEvidence": [
+          "Legitimate Interest Assessment (LIA) Documentation",
+          "Statutory Legal Obligation Reference Matrix",
+          "Record of Processing Activities (RoPA) with Lawful Bases Mappings"
+        ],
+        "weight": 9
+      },
+      {
+        "id": "PDPL-ART-10",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-1",
+        "domainName": "1. General Principles & Lawful Bases of Processing",
+        "subDomain": "Direct Collection & Limitation",
+        "title": "PDPL-ART-10: Direct Collection & Purpose Limitation",
+        "description": "Personal data must be collected directly from the data subject and processed solely for the declared explicit purpose, minimizing indirect collection without prior approval.",
+        "implementationGuidance": "Ensure application intake forms collect only data strictly necessary for providing the requested service (Data Minimization principle).",
+        "requiredEvidence": [
+          "Data Minimization Verification Review Checklist",
+          "Service Intake Form Field Requirement Justification Sheet",
+          "Indirect Collection Approval Records and Exemption Logs"
+        ],
+        "weight": 8
+      },
+      {
+        "id": "PDPL-ART-11",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-1",
+        "domainName": "1. General Principles & Lawful Bases of Processing",
+        "subDomain": "Data Quality & Accuracy",
+        "title": "PDPL-ART-11: Data Accuracy & Quality Controls",
+        "description": "The Controller must ensure that all collected personal data is accurate, complete, and kept up to date for the duration of its lifecycle.",
+        "implementationGuidance": "Implement automated data validation rules and regular data cleansing intervals.",
+        "requiredEvidence": [
+          "Data Quality Management Procedure",
+          "User Profile Self-Service Update Portal Proof",
+          "Periodic Data Cleansing and Verification Audit Reports"
+        ],
+        "weight": 7
+      },
+      {
+        "id": "PDPL-ART-04",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-2",
+        "domainName": "2. Data Subject Rights & Consent Management",
+        "subDomain": "Data Subject Rights",
+        "title": "PDPL-ART-04: Core Data Subject Rights Enforcement",
+        "description": "The entity must facilitate the exercise of Data Subject Rights: Right to be Informed, Right to Access, Right to Request a Copy, Right to Correction/Update, and Right to Destruction.",
+        "implementationGuidance": "Set up a centralized Data Subject Request (DSR) ticketing and response pipeline.",
+        "requiredEvidence": [
+          "Data Subject Rights Management Standard Operating Procedure (SOP)",
+          "DSR Portal / Request Intake Form Screenshots",
+          "DSR Ticket Tracking Log with Response Timestamps"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-09",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-2",
+        "domainName": "2. Data Subject Rights & Consent Management",
+        "subDomain": "Access Timelines",
+        "title": "PDPL-ART-09: Data Access Fulfillment Within 30 Days",
+        "description": "The Controller must respond to personal data access and copy requests free of charge without undue delay, and within 30 days of receiving the request.",
+        "implementationGuidance": "Establish SLA alerting mechanisms for DSR requests approaching the 30-day statutory threshold.",
+        "requiredEvidence": [
+          "DSR 30-Day SLA Escalation Matrix & Notification Workflow",
+          "DSR Resolution Metric Reports & Auditor Audit Trail",
+          "Standard Request Denial Justification Procedure (if applicable)"
+        ],
+        "weight": 9
+      },
+      {
+        "id": "PDPL-ART-12",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-2",
+        "domainName": "2. Data Subject Rights & Consent Management",
+        "subDomain": "Privacy Notice",
+        "title": "PDPL-ART-12: Comprehensive Public Privacy Policy / Notice",
+        "description": "A formal, clear, and bilingual (Arabic/English) Privacy Policy must be published and made accessible to data subjects prior to personal data collection.",
+        "implementationGuidance": "The Privacy Notice must state the controller identity, purpose of collection, legal bases, retention periods, third-party disclosures, and DPO contact details.",
+        "requiredEvidence": [
+          "Published Public Privacy Notice (Arabic & English)",
+          "Website / Mobile App Privacy Policy Acceptance Flow",
+          "Annual Privacy Policy Review & Approval Evidence"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-17",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-2",
+        "domainName": "2. Data Subject Rights & Consent Management",
+        "subDomain": "Correction Cascading",
+        "title": "PDPL-ART-17: Cascading Data Corrections to Processors",
+        "description": "When personal data is corrected, updated, or completed upon request, the Controller must immediately notify all external entities and processors to whom data was disclosed.",
+        "implementationGuidance": "Configure automated webhook synchronization or operational change alerts to vendor systems.",
+        "requiredEvidence": [
+          "Processor Data Update Notification Workflow Procedure",
+          "Third-Party Rectification Confirmation Audit Logs",
+          "DSR Correction Completed Confirmation Receipts"
+        ],
+        "weight": 8
+      },
+      {
+        "id": "PDPL-ART-18",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-2",
+        "domainName": "2. Data Subject Rights & Consent Management",
+        "subDomain": "Retention & Destruction",
+        "title": "PDPL-ART-18: Secure Personal Data Destruction & Retention Schedule",
+        "description": "Personal data must be securely destroyed without undue delay once the purpose of collection has expired or upon statutory retention completion.",
+        "implementationGuidance": "Maintain a Data Retention Schedule defining precise retention periods for employee, customer, financial, and credit records.",
+        "requiredEvidence": [
+          "Data Retention Schedule & Secure Disposal Policy",
+          "Automated Database Purging / Anonymization Scripts",
+          "Certificates of Media Sanitization & Destruction Logs"
+        ],
+        "weight": 9
+      },
+      {
+        "id": "PDPL-ART-21",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-3",
+        "domainName": "3. Controller & Processor Governance & DPIA",
+        "subDomain": "Data Protection Officer",
+        "title": "PDPL-ART-21: Designation of Data Protection Officer (DPO)",
+        "description": "The organization must designate a qualified Data Protection Officer (DPO) responsible for overseeing PDPL compliance, training, and acting as point of contact with SDAIA.",
+        "implementationGuidance": "Formally appoint the DPO with direct reporting to executive leadership and registration on SDAIA national portal.",
+        "requiredEvidence": [
+          "Official Board / Executive Resolution Appointing the DPO",
+          "DPO Job Description, Independence Mandate, and Authority Matrix",
+          "SDAIA DPO Registration Submission Record"
+        ],
+        "weight": 9
+      },
+      {
+        "id": "PDPL-ART-22",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-3",
+        "domainName": "3. Controller & Processor Governance & DPIA",
+        "subDomain": "DPIA Impact Assessment",
+        "title": "PDPL-ART-22: Mandatory Data Protection Impact Assessment (DPIA)",
+        "description": "Conduct a formal Data Protection Impact Assessment (DPIA) prior to launching any new system, product, service, or high-risk processing activity.",
+        "implementationGuidance": "Utilize SDAIA DPIA methodology assessing processing necessity, proportionality, privacy risks, and mitigation controls.",
+        "requiredEvidence": [
+          "Approved DPIA Policy & Standard Assessment Template",
+          "Completed DPIA Reports for Core Business & Cloud Systems",
+          "DPIA Risk Treatment & Corrective Action Sign-off Records"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-31",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-3",
+        "domainName": "3. Controller & Processor Governance & DPIA",
+        "subDomain": "RoPA Record Keeping",
+        "title": "PDPL-ART-31: Record of Processing Activities (RoPA)",
+        "description": "Maintain a comprehensive, up-to-date Record of Processing Activities (RoPA) detailing categories of data, processing purposes, recipients, and security measures.",
+        "implementationGuidance": "Populate the RoPA across HR, Marketing, Operations, IT, and Customer Services according to SDAIA regulatory template.",
+        "requiredEvidence": [
+          "Official Enterprise Record of Processing Activities (RoPA) Spreadsheet",
+          "Annual RoPA Audit & Departmental Attestation Records",
+          "Data Category & Sensitivity Mapping Register"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-33",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-3",
+        "domainName": "3. Controller & Processor Governance & DPIA",
+        "subDomain": "Processor Vendor Contracts",
+        "title": "PDPL-ART-33: Data Processing Agreements (DPA) with Processors",
+        "description": "Controllers must execute binding Data Processing Agreements (DPA) with all third-party processors, enforcing PDPL security and audit obligations.",
+        "implementationGuidance": "Incorporate mandatory PDPL clauses covering confidentiality, breach reporting, sub-processing restrictions, and return/destruction of data.",
+        "requiredEvidence": [
+          "Standard Data Processing Addendum (DPA) Template",
+          "Signed Vendor Contracts with PDPL Addendums",
+          "Periodic Processor Compliance Audit Reports"
+        ],
+        "weight": 9
+      },
+      {
+        "id": "PDPL-ART-19",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-4",
+        "domainName": "4. Security Safeguards & 72-Hour Breach Notification",
+        "subDomain": "Technical Safeguards",
+        "title": "PDPL-ART-19: Technical & Organizational Security Safeguards",
+        "description": "Implement robust technical, organizational, and physical safeguards (encryption, access control, pseudonymization) to protect personal data against breach or unauthorized access.",
+        "implementationGuidance": "Enforce strong encryption for personal data at rest (AES-256) and in transit (TLS 1.3), along with role-based access control (RBAC).",
+        "requiredEvidence": [
+          "Personal Data Encryption Configuration Baseline Screenshots",
+          "Role-Based Access Control (RBAC) Privilege Assignment Matrix",
+          "Annual Vulnerability Scanning & Penetration Testing Reports"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-20",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-4",
+        "domainName": "4. Security Safeguards & 72-Hour Breach Notification",
+        "subDomain": "72-Hour Breach Reporting",
+        "title": "PDPL-ART-20: 72-Hour Personal Data Breach Notification",
+        "description": "The Controller must notify SDAIA within 72 hours of becoming aware of any personal data breach, damage, or unauthorized disclosure, and notify affected subjects if high risk occurs.",
+        "implementationGuidance": "Establish an Incident Response Procedure with specialized workflows for calculating breach severity and generating the SDAIA 72-hour notification form.",
+        "requiredEvidence": [
+          "Personal Data Incident & Breach Management Procedure",
+          "SDAIA 72-Hour Regulatory Breach Notification Form Template",
+          "Data Subject Breach Notification Communication Template & Drill Records"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-41",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-4",
+        "domainName": "4. Security Safeguards & 72-Hour Breach Notification",
+        "subDomain": "Staff Confidentiality",
+        "title": "PDPL-ART-41: Employee Confidentiality & Non-Disclosure Undertakings",
+        "description": "All employees, contractors, and individuals with access to personal data must sign binding confidentiality undertakings that survive employment termination.",
+        "implementationGuidance": "Mandate NDA execution during onboarding and deliver annual personal data protection awareness training.",
+        "requiredEvidence": [
+          "Executed Employee Confidentiality & NDA Agreements",
+          "Annual Personal Data Protection Awareness Training Attendance Records",
+          "Employee Onboarding & Offboarding Privacy Checklists"
+        ],
+        "weight": 8
+      },
+      {
+        "id": "PDPL-ART-29",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-5",
+        "domainName": "5. Cross-Border Personal Data Transfer",
+        "subDomain": "Cross-Border Transfer Conditions",
+        "title": "PDPL-ART-29: Legal Conditions for Cross-Border Transfers",
+        "description": "Personal data may only be transferred outside Saudi Arabia if the destination provides an adequate level of protection or through approved appropriate safeguards (SCCs, BCRs).",
+        "implementationGuidance": "Conduct a Cross-Border Transfer Risk Assessment verifying that the transfer does not prejudice national security or vital interests.",
+        "requiredEvidence": [
+          "Cross-Border Personal Data Transfer Policy & Register",
+          "SDAIA Standard Contractual Clauses (SCCs) Executed with Foreign Hosts",
+          "Transfer Impact Assessment (TIA) Reports for International Cloud Services"
+        ],
+        "weight": 10
+      },
+      {
+        "id": "PDPL-ART-30",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-5",
+        "domainName": "5. Cross-Border Personal Data Transfer",
+        "subDomain": "Financial & SAMA Alignments",
+        "title": "PDPL-ART-30: Credit & Financial Data Sovereignty",
+        "description": "Ensure personal credit data and financial records comply strictly with both SAMA regulations and PDPL data residency mandates.",
+        "implementationGuidance": "Enforce in-Kingdom storage baselines for core banking, payment, and credit bureau information.",
+        "requiredEvidence": [
+          "Financial Data Residency Architecture Diagram",
+          "SAMA No-Objection Certificates for Third-Party Outsourcing",
+          "Database Geolocation Verification Audit Certificates"
+        ],
+        "weight": 8
+      },
+      {
+        "id": "PDPL-ART-23",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-6",
+        "domainName": "6. Direct Marketing, Special Categories & RoPA Records",
+        "subDomain": "Health & Sensitive Data",
+        "title": "PDPL-ART-23: Special Safeguards for Health & Biometric Data",
+        "description": "Apply heightened organizational and cryptographic safeguards when processing Health Data, Genetic Data, or Biometric Data, restricting access to authorized medical personnel.",
+        "implementationGuidance": "Segregate sensitive health data partitions with dedicated access logging and encryption.",
+        "requiredEvidence": [
+          "Sensitive & Health Data Processing Policy",
+          "Access Authorization Log for Specialized Healthcare/Genetic Systems",
+          "Health Data Pseudonymization Baseline Documentation"
+        ],
+        "weight": 9
+      },
+      {
+        "id": "PDPL-ART-24",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-6",
+        "domainName": "6. Direct Marketing, Special Categories & RoPA Records",
+        "subDomain": "Credit Data",
+        "title": "PDPL-ART-24: Protection of Credit & Financial Profile Data",
+        "description": "Credit data must only be collected upon explicit subject consent or statutory authority, with strict safeguards against unauthorized profiling.",
+        "implementationGuidance": "Maintain audit logs for all credit score requests and ensure immediate disclosure upon subject request.",
+        "requiredEvidence": [
+          "Credit Data Processing Standard Operating Procedure",
+          "Credit Check Consent Verification Screenshots",
+          "SIMAH / Financial System Data Integration Security Baseline"
+        ],
+        "weight": 8
+      },
+      {
+        "id": "PDPL-ART-25",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-6",
+        "domainName": "6. Direct Marketing, Special Categories & RoPA Records",
+        "subDomain": "Direct Marketing Restrictions",
+        "title": "PDPL-ART-25: Direct Marketing & Advertising Consent Controls",
+        "description": "Sending advertising or marketing communications to individuals via SMS, email, or telephone requires prior explicit consent and an immediate, free unsubscribe mechanism.",
+        "implementationGuidance": "Embed clear 'Unsubscribe' links in every marketing email and honor opt-outs across CRM databases within 24 hours.",
+        "requiredEvidence": [
+          "Direct Marketing & Electronic Communication Policy",
+          "Marketing Opt-In / Opt-Out Consent Register",
+          "Sample Marketing Message with Clear Unsubscribe / Opt-Out Mechanism"
+        ],
+        "weight": 9
+      },
+      {
+        "id": "PDPL-ART-28",
+        "frameworkId": "saudi-pdpl",
+        "domainId": "PDPL-DOM-6",
+        "domainName": "6. Direct Marketing, Special Categories & RoPA Records",
+        "subDomain": "Official Documents Copying",
+        "title": "PDPL-ART-28: Restrictions on Copying Official IDs & Passports",
+        "description": "Copying official government identity documents (National ID, Iqama, Passport) is strictly prohibited unless expressly mandated by applicable Saudi laws.",
+        "implementationGuidance": "Transition identity verification workflows to Yakeen / Nafath digital verification APIs instead of photocopying IDs.",
+        "requiredEvidence": [
+          "National ID & Identity Document Handling Policy",
+          "Digital Identity Verification (Nafath/Yakeen) Integration Architecture",
+          "Physical ID Scanning Exemption Log & Legal Basis Records"
+        ],
+        "weight": 9
+      }
+    ]
+  },
+  {
     "id": "iso-27001-2022",
     "code": "ISO_27001",
     "name": "ISO 27001",

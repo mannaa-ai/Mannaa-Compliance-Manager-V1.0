@@ -1,4 +1,4 @@
-﻿# 🚀 ANMAT Compliance Manager — Strategic Roadmap & Feature Enhancements
+# 🚀 ANMAT Compliance Manager — Strategic Roadmap & Feature Enhancements
 
 This document tracks all advanced strategic modules, features, and capabilities planned for **ANMAT Compliance Manager**. As we implement and verify each feature, we mark it with **[x] Done** and proceed to the next milestone.
 
@@ -7,13 +7,13 @@ This document tracks all advanced strategic modules, features, and capabilities 
 ## 📋 Feature Roadmap & Implementation Tracker
 
 ### 1. 🛡️ Module 1: PDPL (Saudi Personal Data Protection Law — نظام حماية البيانات الشخصية)
-- [ ] **Status**: Pending
-- **Description**: Add an official 24th framework module for SDAIA's Personal Data Protection Law (PDPL) regulations.
+- [x] **Status**: **Completed & Verified (2026-09-21)**
+- **Description**: Official 24th framework module for SDAIA's Personal Data Protection Law (PDPL) regulations.
 - **Key Capabilities**:
-  - Full catalog of PDPL principles, articles, and controls.
-  - Data Classification and Record of Processing Activities (RoPA) support.
-  - Recommended evidence documents & policies for personal data compliance.
-  - Integrated into questionnaire generation, scoring, and executive PDF deliverables.
+  - Full catalog of PDPL principles, articles, and controls across 6 core domains.
+  - Recommended & required evidence documents pre-populated for all clauses.
+  - Data Classification, Consent, DSR 30-day fulfillment, 72-Hour Breach Notification, and RoPA.
+  - Full support in Excel questionnaire downloads/uploads, 3-tier scoring, and PDF reports.
 
 ---
 
