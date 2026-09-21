@@ -315,7 +315,14 @@ export const App: React.FC = () => {
         )}
 
         {currentTab === 'crossmap' && (
-          <CrossMappingView frameworks={projectFrameworks.length > 0 ? projectFrameworks : frameworks} />
+          <CrossMappingView 
+            frameworks={projectFrameworks.length > 0 ? projectFrameworks : frameworks} 
+            assessments={assessments}
+            activeProjectId={activeProject?.id || 'default'}
+            onBatchSaveAssessments={handleBatchSaveAssessments}
+            lang={lang}
+            theme={theme}
+          />
         )}
 
         {currentTab === 'reports' && activeProject && activeFramework && (
