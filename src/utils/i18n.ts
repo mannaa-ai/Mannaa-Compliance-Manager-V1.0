@@ -39,6 +39,7 @@ export interface Translations {
   evidenceVault: string;
   crossFrameworkMappings: string;
   reportsDeliverables: string;
+  usersManagement: string;
   projectStandards: string;
   importBtn: string;
   downloadTemplate: string;
@@ -140,8 +141,9 @@ export const translations: Record<Language, Translations> = {
     complianceAnalytics: 'Compliance Analytics',
     controlsAssessment: 'Controls Assessment',
     evidenceVault: 'Evidence Vault',
-    crossFrameworkMappings: 'Cross-Framework Mappings',
-    reportsDeliverables: 'Reports & Deliverables',
+    crossFrameworkMappings: 'Cross Mappings',
+    reportsDeliverables: 'Audit Deliverables',
+    usersManagement: 'Team & Role Access',
     projectStandards: 'Project Standards',
     importBtn: 'Import',
     downloadTemplate: 'Template',
@@ -238,6 +240,7 @@ export const translations: Record<Language, Translations> = {
     evidenceVault: 'مستودع الأدلة والوثائق',
     crossFrameworkMappings: 'المواءمة بين المعايير',
     reportsDeliverables: 'التقارير والمخرجات الرسمية',
+    usersManagement: 'إدارة المستخدمين والصلاحيات',
     projectStandards: 'معايير المشروع',
     importBtn: 'استيراد',
     downloadTemplate: 'نموذج إكسل',

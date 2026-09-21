@@ -11,6 +11,7 @@ import { AssessmentView } from './components/AssessmentView';
 import { EvidenceVault } from './components/EvidenceVault';
 import { CrossMappingView } from './components/CrossMappingView';
 import { ReportsView } from './components/ReportsView';
+import { UsersManagementView } from './components/UsersManagementView';
 import { ProjectModal } from './components/ProjectModal';
 import { ImportFrameworkModal } from './components/ImportFrameworkModal';
 
@@ -319,6 +320,14 @@ export const App: React.FC = () => {
             framework={activeFramework}
             assessments={assessments}
             evidenceList={evidenceList}
+          />
+        )}
+
+        {currentTab === 'users' && currentUser && (
+          <UsersManagementView
+            currentUser={currentUser}
+            lang={lang}
+            theme={theme}
           />
         )}
       </main>

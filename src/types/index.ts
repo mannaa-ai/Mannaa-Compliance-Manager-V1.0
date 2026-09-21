@@ -87,3 +87,20 @@ export interface Project {
   status: 'IN_PROGRESS' | 'COMPLETED' | 'ARCHIVED';
   notes?: string;
 }
+
+export type UserRole = 'ADMIN' | 'LEAD_AUDITOR' | 'COMPLIANCE_ASSESSOR' | 'EVIDENCE_CONTRIBUTOR' | 'AUDITOR_OBSERVER';
+
+export interface UserAccount {
+  email: string;
+  name: string;
+  role: UserRole;
+  passwordHash: string;
+  salt: string;
+  mfaSecret: string;
+  mfaEnabled: boolean;
+  backupCodes: string[];
+  createdAt: string;
+  lastLogin?: string;
+  isActive: boolean;
+}
+

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { 
   Lock, 
   Mail, 
@@ -18,15 +18,16 @@ import {
 } from 'lucide-react';
 import type { Language } from '../utils/i18n';
 import { translations } from '../utils/i18n';
+import type { UserAccount } from '../types';
 import { 
-  generateSalt, 
   hashPassword, 
   generateMfaSecret, 
   generateTotpUri, 
   generateQrCodeDataUrl, 
   verifyTotpToken, 
   generateBackupCodes,
-  type AuthProfile 
+  getStoredUsers,
+  saveStoredUsers
 } from '../utils/auth';
 
 interface LoginPageProps {
@@ -46,7 +47,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
 }) => {
   const t = translations[lang];
 
-  // Primary Credentials (No Role selector as requested)
+  // Primary Credentials (No Role selector on login page)
   const [email, setEmail] = useState('auditor@anmat.sa');
   const [password, setPassword] = useState('AnmatCompliance2026!');
   const [rememberDevice, setRememberDevice] = useState(true);
@@ -54,6 +55,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({
   // Authentication Flow State: 'CREDENTIALS' -> 'MFA_VERIFY' -> 'MFA_SETUP' -> 'BACKUP_CODE'
   const [authStep, setAuthStep] = useState<'CREDENTIALS' | 'MFA_VERIFY' | 'MFA_SETUP' | 'BACKUP_CODE'>('CREDENTIALS');
   
+  // Active User Authenticating
+  const [currentUser, setCurrentUser] = useState<UserAccount | null>(null);
+
   // MFA OTP Input (6 individual digit boxes)
   const [otpDigits, setOtpDigits] = useState<string[]>(['', '', '', '', '', '']);
   const otpInputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -70,43 +74,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({
   // Error & Status Messages
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [profile, setProfile] = useState<AuthProfile | null>(null);
 
-  // Load or Initialize Default Auditor Profile from localStorage
+  // Pre-seed default users if none exist
   useEffect(() => {
-    const initProfile = async () => {
-      const stored = localStorage.getItem('anmat_auth_profile');
-      if (stored) {
-        try {
-          setProfile(JSON.parse(stored));
-        } catch {
-          // ignore error
-        }
-      } else {
-        // Create initial default admin auditor profile
-        const salt = generateSalt();
-        const initialHash = await hashPassword('AnmatCompliance2026!', salt);
-        const secret = generateMfaSecret();
-        const bCodes = generateBackupCodes();
-
-        const defaultProfile: AuthProfile = {
-          email: 'auditor@anmat.sa',
-          name: 'Mohamed Ali',
-          role: 'Lead GRC & Compliance Auditor',
-          passwordHash: initialHash,
-          salt,
-          mfaSecret: secret,
-          mfaEnabled: false, // will prompt for initial QR setup or allow direct pairing
-          backupCodes: bCodes,
-          failedAttempts: 0
-        };
-
-        localStorage.setItem('anmat_auth_profile', JSON.stringify(defaultProfile));
-        setProfile(defaultProfile);
-      }
-    };
-
-    initProfile();
+    getStoredUsers();
   }, []);
 
   // Step 1: Handle Primary Credentials Submission
@@ -116,50 +87,32 @@ export const LoginPage: React.FC<LoginPageProps> = ({
     setIsLoading(true);
 
     try {
-      if (!profile) throw new Error('Authentication profile not initialized.');
+      const users = await getStoredUsers();
+      const targetUser = users.find(u => u.email.toLowerCase() === email.trim().toLowerCase());
 
-      // Check lockout
-      if (profile.lockedUntil && profile.lockedUntil > Date.now()) {
-        const remainingSec = Math.ceil((profile.lockedUntil - Date.now()) / 1000);
-        throw new Error(`Account temporarily locked due to failed attempts. Try again in ${remainingSec}s.`);
+      if (!targetUser) {
+        throw new Error('User account not found. Please check your email address.');
       }
 
-      // Check Email
-      if (email.trim().toLowerCase() !== profile.email.toLowerCase()) {
-        throw new Error('Invalid email address.');
+      if (!targetUser.isActive) {
+        throw new Error('This account has been deactivated by the administrator.');
       }
 
       // Check Password Hash
-      const computedHash = await hashPassword(password, profile.salt);
-      if (computedHash !== profile.passwordHash) {
-        const nextAttempts = (profile.failedAttempts || 0) + 1;
-        const updated: AuthProfile = {
-          ...profile,
-          failedAttempts: nextAttempts,
-          lockedUntil: nextAttempts >= 5 ? Date.now() + 60000 : undefined
-        };
-        localStorage.setItem('anmat_auth_profile', JSON.stringify(updated));
-        setProfile(updated);
-
-        if (nextAttempts >= 5) {
-          throw new Error('Too many failed attempts. Account locked for 60 seconds.');
-        } else {
-          throw new Error(`Invalid password. (${5 - nextAttempts} attempts remaining)`);
-        }
+      const computedHash = await hashPassword(password, targetUser.salt);
+      if (computedHash !== targetUser.passwordHash) {
+        throw new Error('Invalid master password. Please verify and try again.');
       }
 
-      // Reset failed attempts on valid password
-      const resetProf: AuthProfile = { ...profile, failedAttempts: 0, lockedUntil: undefined };
-      localStorage.setItem('anmat_auth_profile', JSON.stringify(resetProf));
-      setProfile(resetProf);
+      setCurrentUser(targetUser);
 
       // Check if MFA is configured
-      if (!profile.mfaEnabled) {
+      if (!targetUser.mfaEnabled) {
         // First time MFA setup: Generate QR Code
-        const secret = profile.mfaSecret || generateMfaSecret();
-        const uri = generateTotpUri(profile.email, secret);
+        const secret = targetUser.mfaSecret || generateMfaSecret();
+        const uri = generateTotpUri(targetUser.email, secret);
         const qrUrl = await generateQrCodeDataUrl(uri);
-        const bCodes = profile.backupCodes?.length ? profile.backupCodes : generateBackupCodes();
+        const bCodes = targetUser.backupCodes?.length ? targetUser.backupCodes : generateBackupCodes();
 
         setMfaSecret(secret);
         setQrCodeDataUrl(qrUrl);
@@ -217,41 +170,43 @@ export const LoginPage: React.FC<LoginPageProps> = ({
   };
 
   // Verify TOTP Code
-  const verifyMfaCode = (token: string) => {
+  const verifyMfaCode = async (token: string) => {
     setErrorMessage(null);
     setIsLoading(true);
 
     try {
-      if (!profile) throw new Error('Profile missing.');
+      if (!currentUser) throw new Error('User session missing.');
 
-      const secretToTest = authStep === 'MFA_SETUP' ? mfaSecret : profile.mfaSecret;
+      const secretToTest = authStep === 'MFA_SETUP' ? mfaSecret : currentUser.mfaSecret;
       const isValid = verifyTotpToken(token, secretToTest);
 
       if (!isValid) {
-        throw new Error('Invalid 6-digit authenticator code. Check clock synchronization on your device.');
+        throw new Error('Invalid 6-digit authenticator code. Ensure time sync on your phone authenticator.');
       }
 
-      // If completing first-time setup, save mfaEnabled = true
-      if (authStep === 'MFA_SETUP') {
-        const updated: AuthProfile = {
-          ...profile,
-          mfaSecret,
-          mfaEnabled: true,
-          backupCodes
-        };
-        localStorage.setItem('anmat_auth_profile', JSON.stringify(updated));
-        setProfile(updated);
-      }
+      const users = await getStoredUsers();
+      const updatedUsers = users.map(u => {
+        if (u.email.toLowerCase() === currentUser.email.toLowerCase()) {
+          return {
+            ...u,
+            mfaSecret: secretToTest,
+            mfaEnabled: true,
+            backupCodes: authStep === 'MFA_SETUP' ? backupCodes : u.backupCodes,
+            lastLogin: new Date().toISOString()
+          };
+        }
+        return u;
+      });
+      saveStoredUsers(updatedUsers);
 
-      // Successful MFA Verification
       if (rememberDevice) {
         localStorage.setItem('anmat_mfa_trusted_until', String(Date.now() + 30 * 24 * 3600 * 1000));
       }
 
       onLogin({
-        name: profile.name,
-        role: profile.role,
-        email: profile.email
+        name: currentUser.name,
+        role: currentUser.role,
+        email: currentUser.email
       });
     } catch (err: any) {
       setErrorMessage(err.message || 'MFA validation failed.');
@@ -263,30 +218,36 @@ export const LoginPage: React.FC<LoginPageProps> = ({
   };
 
   // Verify Single-Use Backup Recovery Code
-  const handleVerifyBackupCode = (e: React.FormEvent) => {
+  const handleVerifyBackupCode = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
 
-    if (!profile) return;
+    if (!currentUser) return;
     const cleanCode = backupCodeInput.trim();
 
-    if (profile.backupCodes && profile.backupCodes.includes(cleanCode)) {
+    if (currentUser.backupCodes && currentUser.backupCodes.includes(cleanCode)) {
       // Consume the backup code
-      const remainingCodes = profile.backupCodes.filter(c => c !== cleanCode);
-      const updated: AuthProfile = {
-        ...profile,
-        backupCodes: remainingCodes
-      };
-      localStorage.setItem('anmat_auth_profile', JSON.stringify(updated));
-      setProfile(updated);
+      const remainingCodes = currentUser.backupCodes.filter(c => c !== cleanCode);
+      const users = await getStoredUsers();
+      const updatedUsers = users.map(u => {
+        if (u.email.toLowerCase() === currentUser.email.toLowerCase()) {
+          return {
+            ...u,
+            backupCodes: remainingCodes,
+            lastLogin: new Date().toISOString()
+          };
+        }
+        return u;
+      });
+      saveStoredUsers(updatedUsers);
 
       onLogin({
-        name: profile.name,
-        role: profile.role,
-        email: profile.email
+        name: currentUser.name,
+        role: currentUser.role,
+        email: currentUser.email
       });
     } else {
-      setErrorMessage('Invalid or already used backup code.');
+      setErrorMessage('Invalid or already consumed backup code.');
     }
   };
 
@@ -459,7 +420,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
               </div>
               <h2 className="text-sm font-extrabold text-slate-100">Multi-Factor Authentication (MFA)</h2>
               <p className="text-xs text-slate-400 mt-1">
-                Enter the 6-digit code from Google Authenticator or Microsoft Authenticator.
+                Enter the 6-digit code from Google Authenticator or Microsoft Authenticator for <strong>{currentUser?.email}</strong>.
               </p>
             </div>
 
@@ -521,7 +482,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
             </div>
 
             <p className="text-xs text-slate-400">
-              Scan this QR code with <strong>Google Authenticator</strong>, <strong>Microsoft Authenticator</strong>, or <strong>1Password</strong>.
+              Pair your account with <strong>Google Authenticator</strong>, <strong>Microsoft Authenticator</strong>, or <strong>1Password</strong>.
             </p>
 
             {qrCodeDataUrl && (
@@ -546,7 +507,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
 
             {/* Verification OTP Box */}
             <div className="pt-2">
-              <label className="block text-xs font-bold mb-2 text-slate-300">Enter the 6-digit code shown in your app:</label>
+              <label className="block text-xs font-bold mb-2 text-slate-300">Enter the 6-digit code generated in your app:</label>
               <div className="flex items-center justify-center gap-2" onPaste={handlePasteOtp}>
                 {otpDigits.map((digit, idx) => (
                   <input
