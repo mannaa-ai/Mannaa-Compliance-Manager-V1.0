@@ -50,12 +50,14 @@ This document tracks all advanced strategic modules, features, and capabilities 
 ---
 
 ### 5. 👥 Module 5: Auditee Self-Service Portal & Departmental Delegation
-- [ ] **Status**: Pending
-- **Description**: Departmental delegation portal for client IT, HR, and Legal teams.
+- [x] **Status**: **Completed & Verified (2026-09-21)**
+- **Description**: Departmental delegation portal for client IT, HR, Legal, Risk, and Procurement teams.
 - **Key Capabilities**:
-  - Restricted "Auditee" view allowing departmental managers to see only assigned controls.
-  - Evidence upload workflow without exposing confidential auditor field notes.
-  - Target due date countdowns, status indicators, and notification badges.
+  - Filtered "Auditee Self-Service View" enabling departmental custodians (IT, HR, SOC, Legal, Facilities) to view and respond to their specific assigned controls.
+  - Operational implementation statement and response editor for auditees.
+  - Direct departmental evidence upload & artifact attachment into the secure encrypted vault without altering lead auditor field notes or scores.
+  - Due date countdown badges (Overdue, Due in X days, No Deadline) and departmental readiness KPI progress tracking.
+  - Lead Auditor batch delegation tool to simultaneously assign multiple controls to departments.
 
 ---
 

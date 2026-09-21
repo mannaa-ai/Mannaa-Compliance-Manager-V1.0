@@ -21,7 +21,8 @@ import {
   Moon,
   LogOut,
   Users,
-  TrendingUp
+  TrendingUp,
+  UserCheck
 } from 'lucide-react';
 import { exportFrameworkTemplateExcel } from '../utils/importer';
 
@@ -194,6 +195,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>{t.controlsAssessment}</span>
+            </button>
+
+            <button
+              onClick={() => setCurrentTab('auditee')}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition ${
+                currentTab === 'auditee'
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-900/20'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+              }`}
+            >
+              <UserCheck className="w-4 h-4" />
+              <span>{t.auditeePortal}</span>
             </button>
 
             <button

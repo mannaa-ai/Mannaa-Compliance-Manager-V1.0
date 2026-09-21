@@ -36,6 +36,7 @@ export interface Translations {
   auditWorkspace: string;
   complianceAnalytics: string;
   controlsAssessment: string;
+  auditeePortal: string;
   evidenceVault: string;
   crossFrameworkMappings: string;
   reportsDeliverables: string;
@@ -141,6 +142,7 @@ export const translations: Record<Language, Translations> = {
     auditWorkspace: 'Audit Workspace',
     complianceAnalytics: 'Compliance Analytics',
     controlsAssessment: 'Controls Assessment',
+    auditeePortal: 'Auditee Self-Service Portal',
     evidenceVault: 'Evidence Vault',
     crossFrameworkMappings: 'Cross Mappings',
     reportsDeliverables: 'Audit Deliverables',
@@ -239,6 +241,7 @@ export const translations: Record<Language, Translations> = {
     auditWorkspace: 'مساحة التدقيق',
     complianceAnalytics: 'تحليلات ونسب الامتثال',
     controlsAssessment: 'تقييم ومراجعة الضوابط',
+    auditeePortal: 'بوابة تفويض الإدارات (Auditee)',
     evidenceVault: 'مستودع الأدلة والوثائق',
     crossFrameworkMappings: 'المواءمة بين المعايير',
     reportsDeliverables: 'التقارير والمخرجات الرسمية',

@@ -12,6 +12,7 @@ import { EvidenceVault } from './components/EvidenceVault';
 import { CrossMappingView } from './components/CrossMappingView';
 import { ReportsView } from './components/ReportsView';
 import { MilestoneProgressView } from './components/MilestoneProgressView';
+import { AuditeePortalView } from './components/AuditeePortalView';
 import { UsersManagementView } from './components/UsersManagementView';
 import { ProjectModal } from './components/ProjectModal';
 import { ImportFrameworkModal } from './components/ImportFrameworkModal';
@@ -299,6 +300,20 @@ export const App: React.FC = () => {
             lang={lang}
             theme={theme}
             clientName={activeProject?.organizationName || 'Client Organization'}
+            projectId={activeProject?.id || 'default'}
+          />
+        )}
+
+        {currentTab === 'auditee' && activeFramework && (
+          <AuditeePortalView
+            framework={activeFramework}
+            assessments={assessments}
+            evidenceList={evidenceList}
+            onSaveAssessment={handleSaveAssessment}
+            onBatchSaveAssessments={handleBatchSaveAssessments}
+            onAttachEvidenceModal={() => setCurrentTab('evidence')}
+            lang={lang}
+            theme={theme}
             projectId={activeProject?.id || 'default'}
           />
         )}
