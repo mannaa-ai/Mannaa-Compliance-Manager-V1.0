@@ -37,6 +37,7 @@ export interface Translations {
   complianceAnalytics: string;
   controlsAssessment: string;
   auditeePortal: string;
+  executiveHeatmap: string;
   evidenceVault: string;
   crossFrameworkMappings: string;
   reportsDeliverables: string;
@@ -143,6 +144,7 @@ export const translations: Record<Language, Translations> = {
     complianceAnalytics: 'Compliance Analytics',
     controlsAssessment: 'Controls Assessment',
     auditeePortal: 'Auditee Self-Service Portal',
+    executiveHeatmap: 'Executive Risk Heatmap',
     evidenceVault: 'Evidence Vault',
     crossFrameworkMappings: 'Cross Mappings',
     reportsDeliverables: 'Audit Deliverables',
@@ -242,6 +244,7 @@ export const translations: Record<Language, Translations> = {
     complianceAnalytics: 'تحليلات ونسب الامتثال',
     controlsAssessment: 'تقييم ومراجعة الضوابط',
     auditeePortal: 'بوابة تفويض الإدارات (Auditee)',
+    executiveHeatmap: 'مصفوفة المخاطر وعرض القيادة',
     evidenceVault: 'مستودع الأدلة والوثائق',
     crossFrameworkMappings: 'المواءمة بين المعايير',
     reportsDeliverables: 'التقارير والمخرجات الرسمية',

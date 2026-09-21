@@ -13,6 +13,7 @@ import { CrossMappingView } from './components/CrossMappingView';
 import { ReportsView } from './components/ReportsView';
 import { MilestoneProgressView } from './components/MilestoneProgressView';
 import { AuditeePortalView } from './components/AuditeePortalView';
+import { ExecutiveHeatmapView } from './components/ExecutiveHeatmapView';
 import { UsersManagementView } from './components/UsersManagementView';
 import { ProjectModal } from './components/ProjectModal';
 import { ImportFrameworkModal } from './components/ImportFrameworkModal';
@@ -315,6 +316,16 @@ export const App: React.FC = () => {
             lang={lang}
             theme={theme}
             projectId={activeProject?.id || 'default'}
+          />
+        )}
+
+        {currentTab === 'heatmap' && activeFramework && (
+          <ExecutiveHeatmapView
+            framework={activeFramework}
+            assessments={assessments}
+            clientName={activeProject?.organizationName || 'Enterprise Organization'}
+            lang={lang}
+            theme={theme}
           />
         )}
 
