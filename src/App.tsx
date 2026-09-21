@@ -224,6 +224,10 @@ export const App: React.FC = () => {
           onDeleteProject={handleDeleteProject}
           onLogout={handleLogout}
           onOpenImportModal={() => setIsImportModalOpen(true)}
+          onOpenUsers={() => {
+            setViewMode('workspace');
+            setCurrentTab('users');
+          }}
           lang={lang}
           onToggleLang={toggleLanguage}
           theme={theme}

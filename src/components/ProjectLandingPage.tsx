@@ -17,7 +17,8 @@ import {
   LogOut,
   Globe,
   Sun,
-  Moon
+  Moon,
+  Users
 } from 'lucide-react';
 
 interface ProjectLandingPageProps {
@@ -29,6 +30,7 @@ interface ProjectLandingPageProps {
   onDeleteProject: (id: string) => void;
   onLogout: () => void;
   onOpenImportModal: () => void;
+  onOpenUsers: () => void;
   lang: Language;
   onToggleLang: () => void;
   theme: 'dark' | 'light';
@@ -44,6 +46,7 @@ export const ProjectLandingPage: React.FC<ProjectLandingPageProps> = ({
   onDeleteProject,
   onLogout,
   onOpenImportModal,
+  onOpenUsers,
   lang,
   onToggleLang,
   theme,
@@ -127,8 +130,20 @@ export const ProjectLandingPage: React.FC<ProjectLandingPageProps> = ({
 
         <div className="flex items-center gap-3">
           <button
+            onClick={onOpenUsers}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition border cursor-pointer ${
+              theme === 'dark' 
+                ? 'bg-slate-800/80 hover:bg-slate-700 border-slate-700/60 text-slate-200' 
+                : 'bg-white hover:bg-slate-100 border-slate-300 text-slate-700 shadow-sm'
+            }`}
+          >
+            <Users className="w-3.5 h-3.5 text-emerald-500" /> 
+            <span>{t.usersManagement}</span>
+          </button>
+
+          <button
             onClick={onOpenImportModal}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition border ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition border cursor-pointer ${
               theme === 'dark' 
                 ? 'bg-slate-800/80 hover:bg-slate-700 border-slate-700/60 text-slate-200' 
                 : 'bg-white hover:bg-slate-100 border-slate-300 text-slate-700 shadow-sm'
