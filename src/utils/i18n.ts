@@ -38,6 +38,7 @@ export interface Translations {
   controlsAssessment: string;
   auditeePortal: string;
   executiveHeatmap: string;
+  auditTrail: string;
   evidenceVault: string;
   crossFrameworkMappings: string;
   reportsDeliverables: string;
@@ -145,6 +146,7 @@ export const translations: Record<Language, Translations> = {
     controlsAssessment: 'Controls Assessment',
     auditeePortal: 'Auditee Self-Service Portal',
     executiveHeatmap: 'Executive Risk Heatmap',
+    auditTrail: 'Cryptographic Audit Trail',
     evidenceVault: 'Evidence Vault',
     crossFrameworkMappings: 'Cross Mappings',
     reportsDeliverables: 'Audit Deliverables',
@@ -245,6 +247,7 @@ export const translations: Record<Language, Translations> = {
     controlsAssessment: 'تقييم ومراجعة الضوابط',
     auditeePortal: 'بوابة تفويض الإدارات (Auditee)',
     executiveHeatmap: 'مصفوفة المخاطر وعرض القيادة',
+    auditTrail: 'سجل العمليات المشفر والتحقق',
     evidenceVault: 'مستودع الأدلة والوثائق',
     crossFrameworkMappings: 'المواءمة بين المعايير',
     reportsDeliverables: 'التقارير والمخرجات الرسمية',

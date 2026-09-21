@@ -14,9 +14,11 @@ import { ReportsView } from './components/ReportsView';
 import { MilestoneProgressView } from './components/MilestoneProgressView';
 import { AuditeePortalView } from './components/AuditeePortalView';
 import { ExecutiveHeatmapView } from './components/ExecutiveHeatmapView';
+import { AuditTrailView } from './components/AuditTrailView';
 import { UsersManagementView } from './components/UsersManagementView';
 import { ProjectModal } from './components/ProjectModal';
 import { ImportFrameworkModal } from './components/ImportFrameworkModal';
+import { recordAuditLog } from './utils/auditLogger';
 
 export const App: React.FC = () => {
   // Requirement 3: ALWAYS redirect to login page for credentials upon opening the portal
@@ -139,6 +141,16 @@ export const App: React.FC = () => {
     const recToSave = { ...record, projectId: activeProject.id };
     await db.assessments.put(recToSave);
     
+    // Automatic Cryptographic Audit Log
+    recordAuditLog(
+      activeProject.id,
+      'ASSESSMENT_UPDATED',
+      currentUser?.name || 'Auditor',
+      currentUser?.email || 'auditor@anmat.sa',
+      `Updated control ${recToSave.controlId} status to ${recToSave.status} (CMMI: ${recToSave.cmmiLevel}/5, Score: ${recToSave.scorePercent}%)`,
+      activeFramework?.id
+    ).catch(e => console.error('Audit log error', e));
+
     setAssessments(prev => {
       const idx = prev.findIndex(a => a.controlId === recToSave.controlId);
       if (idx >= 0) {
@@ -154,6 +166,16 @@ export const App: React.FC = () => {
     if (!activeProject || records.length === 0) return;
     const recsToSave = records.map(r => ({ ...r, projectId: activeProject.id }));
     await db.assessments.bulkPut(recsToSave);
+
+    // Record batch harmonization audit log
+    recordAuditLog(
+      activeProject.id,
+      'HARMONIZATION_APPLIED',
+      currentUser?.name || 'Lead Auditor',
+      currentUser?.email || 'auditor@anmat.sa',
+      `Batch updated / auto-harmonized ${records.length} control assessment records across frameworks`,
+      activeFramework?.id
+    ).catch(e => console.error('Audit log error', e));
     
     // Reload assessments
     if (activeFramework) {
@@ -170,6 +192,15 @@ export const App: React.FC = () => {
     if (!activeProject) return;
     const itemToSave = { ...item, projectId: activeProject.id };
     await db.evidence.add(itemToSave);
+
+    recordAuditLog(
+      activeProject.id,
+      'EVIDENCE_ATTACHED',
+      currentUser?.name || 'Auditor',
+      currentUser?.email || 'auditor@anmat.sa',
+      `Uploaded evidence artifact "${item.title}" (${item.type}) associated with ${item.associatedControls?.length || 0} controls`
+    ).catch(e => console.error('Audit log error', e));
+
     setEvidenceList(prev => [itemToSave, ...prev]);
   };
 
@@ -324,6 +355,16 @@ export const App: React.FC = () => {
             framework={activeFramework}
             assessments={assessments}
             clientName={activeProject?.organizationName || 'Enterprise Organization'}
+            lang={lang}
+            theme={theme}
+          />
+        )}
+
+        {currentTab === 'audittrail' && activeProject && activeFramework && currentUser && (
+          <AuditTrailView
+            project={activeProject}
+            framework={activeFramework}
+            currentUser={currentUser}
             lang={lang}
             theme={theme}
           />

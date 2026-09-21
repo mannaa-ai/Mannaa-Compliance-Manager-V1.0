@@ -123,4 +123,30 @@ export interface AuditSnapshot {
   assessmentRecords: AssessmentRecord[];
 }
 
+export interface AuditLogEntry {
+  id: string;
+  projectId: string;
+  frameworkId?: string;
+  action: 'ASSESSMENT_UPDATED' | 'EVIDENCE_ATTACHED' | 'EVIDENCE_DELETED' | 'MILESTONE_SNAPSHOT_CAPTURED' | 'HARMONIZATION_APPLIED' | 'QUESTIONNAIRE_IMPORTED' | 'PROJECT_CREATED' | 'USER_ROLE_CHANGED';
+  actorName: string;
+  actorEmail: string;
+  timestamp: string;
+  details: string;
+  previousHash: string;
+  hash: string;
+  sequenceNumber: number;
+}
+
+export interface VerificationStamp {
+  reportId: string;
+  organizationName: string;
+  frameworkCode: string;
+  complianceScore: number;
+  generatedBy: string;
+  timestamp: string;
+  sha256Hash: string;
+  signatureCert: string;
+}
+
+
 
