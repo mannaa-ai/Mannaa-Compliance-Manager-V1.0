@@ -15,6 +15,7 @@ import { MilestoneProgressView } from './components/MilestoneProgressView';
 import { AuditeePortalView } from './components/AuditeePortalView';
 import { ExecutiveHeatmapView } from './components/ExecutiveHeatmapView';
 import { AuditTrailView } from './components/AuditTrailView';
+import { AiPolicyAssistantView } from './components/AiPolicyAssistantView';
 import { UsersManagementView } from './components/UsersManagementView';
 import { ProjectModal } from './components/ProjectModal';
 import { ImportFrameworkModal } from './components/ImportFrameworkModal';
@@ -367,6 +368,18 @@ export const App: React.FC = () => {
             currentUser={currentUser}
             lang={lang}
             theme={theme}
+          />
+        )}
+
+        {currentTab === 'aipolicies' && activeFramework && (
+          <AiPolicyAssistantView
+            framework={activeFramework}
+            assessments={assessments}
+            clientName={activeProject?.organizationName || 'Enterprise Organization'}
+            onSaveAssessment={handleSaveAssessment}
+            lang={lang}
+            theme={theme}
+            projectId={activeProject?.id || 'default'}
           />
         )}
 

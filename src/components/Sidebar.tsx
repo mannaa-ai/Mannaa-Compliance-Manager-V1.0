@@ -24,7 +24,8 @@ import {
   TrendingUp,
   UserCheck,
   Tv,
-  Lock
+  Lock,
+  Bot
 } from 'lucide-react';
 import { exportFrameworkTemplateExcel } from '../utils/importer';
 
@@ -233,6 +234,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <Lock className="w-4 h-4" />
               <span>{t.auditTrail}</span>
+            </button>
+
+            <button
+              onClick={() => setCurrentTab('aipolicies')}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition ${
+                currentTab === 'aipolicies'
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-900/20'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+              }`}
+            >
+              <Bot className="w-4 h-4" />
+              <span>{t.aiPolicyAssistant}</span>
             </button>
 
             <button
