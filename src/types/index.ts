@@ -104,3 +104,23 @@ export interface UserAccount {
   isActive: boolean;
 }
 
+export interface AuditSnapshot {
+  id: string;
+  projectId: string;
+  frameworkId: string;
+  milestoneName: string;
+  phase: 'PHASE_1_BASELINE' | 'PHASE_2_MID_REVIEW' | 'PHASE_3_FINAL' | 'CUSTOM';
+  notes?: string;
+  capturedAt: string;
+  capturedBy: string;
+  complianceScore: number;
+  cmmiMaturity: number;
+  totalControls: number;
+  compliantCount: number;
+  partiallyCompliantCount: number;
+  nonCompliantCount: number;
+  notApplicableCount: number;
+  assessmentRecords: AssessmentRecord[];
+}
+
+

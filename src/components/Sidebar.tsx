@@ -20,7 +20,8 @@ import {
   Sun,
   Moon,
   LogOut,
-  Users
+  Users,
+  TrendingUp
 } from 'lucide-react';
 import { exportFrameworkTemplateExcel } from '../utils/importer';
 
@@ -229,6 +230,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <FileText className="w-4 h-4" />
               <span>{t.reportsDeliverables}</span>
+            </button>
+
+            <button
+              onClick={() => setCurrentTab('milestones')}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition ${
+                currentTab === 'milestones'
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-900/20'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+              }`}
+            >
+              <TrendingUp className="w-4 h-4" />
+              <span>{t.milestoneProgress}</span>
             </button>
 
             <button

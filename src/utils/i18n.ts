@@ -39,6 +39,7 @@ export interface Translations {
   evidenceVault: string;
   crossFrameworkMappings: string;
   reportsDeliverables: string;
+  milestoneProgress: string;
   usersManagement: string;
   projectStandards: string;
   importBtn: string;
@@ -143,6 +144,7 @@ export const translations: Record<Language, Translations> = {
     evidenceVault: 'Evidence Vault',
     crossFrameworkMappings: 'Cross Mappings',
     reportsDeliverables: 'Audit Deliverables',
+    milestoneProgress: 'Milestone Progress Tracker',
     usersManagement: 'Team & Role Access',
     projectStandards: 'Project Standards',
     importBtn: 'Import',
@@ -240,6 +242,7 @@ export const translations: Record<Language, Translations> = {
     evidenceVault: 'مستودع الأدلة والوثائق',
     crossFrameworkMappings: 'المواءمة بين المعايير',
     reportsDeliverables: 'التقارير والمخرجات الرسمية',
+    milestoneProgress: 'مراحل ومؤشرات التقدم (Phase 1 vs 2)',
     usersManagement: 'إدارة المستخدمين والصلاحيات',
     projectStandards: 'معايير المشروع',
     importBtn: 'استيراد',
